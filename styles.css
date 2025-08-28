@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Your requested color palette */
+:root {
+    --primary-color: #a07d5d;
+    --hover-color: #bfa58a;
+    --text-dark: #0f0838;
+    --text-light: #ffffff;
+    --background: #d7d4cb;
+    --card-bg: rgba(255, 255, 255, 0.5);
+    --border: rgba(255, 255, 255, 0.5);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --google-blue: #4285f4;
+    --google-hover-blue: #357ae8;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* KEY CHANGE: Removed min-height: 100vh to allow the body to shrink to the content's size */
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.main-container {
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    width: 700px;
+    max-width: 90%;
+    /* KEY CHANGE: Added max-height to prevent the container from growing beyond a certain point */
+    max-height: 90vh; 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    /* KEY CHANGE: Added margin to center the container vertically if needed */
+    margin: 20px;
+}
+
+.main-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.form-section, .quote-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.form-section {
+    background: transparent;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.quote-section {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    flex-direction: column;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://source.unsplash.com/random/700x500?coffee,wood') no-repeat center center/cover;
+    filter: blur(10px);
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.quote-content {
+    position: relative;
+    z-index: 1;
+    max-width: 90%;
+    padding: 1rem;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+.logo i {
+    font-size: 1.8rem;
+    margin-right: 6px;
+}
+
+.quote-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.quote-content p {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+.form-container {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    justify-content: center;
+}
+
+.form-container h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-dark);
+}
+
+.form-container p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    opacity: 0.8;
+    margin-bottom: 0.8rem;
+}
+
+/* --- Password input with icon --- */
+.input-with-icon {
+    position: relative;
+    width: 100%;
+}
+
+.input-with-icon .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.input-with-icon .password-toggle:hover {
+    opacity: 1;
+}
+
+/* --- Form Group & Error Message --- */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.error-message {
+    color: #ff4d4f;
+    font-size: 0.7rem;
+    display: block;
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.error-message:not(:empty) {
+    opacity: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 8px rgba(160, 125, 93, 0.2);
+}
+
+/* --- Checkbox Styling (Fixed) --- */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0.8rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    border: 1px solid var(--text-dark);
+    border-radius: 3px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-right: 8px;
+    position: relative;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+.checkbox-group input[type="checkbox"]:checked:after {
+    content: '\2713';
+    font-size: 10px;
+    color: var(--text-light);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group label {
+    font-size: 0.75rem;
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* --- Buttons & Social Icons --- */
+.social-signin {
+    padding: 7px;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.google-signin i {
+    background: linear-gradient(to right, #4285f4, #ea4335, #fbbc05, #34a853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1rem;
+}
+
+.google-signin:hover i {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.divider {
+    margin: 0.8rem 0;
+    font-size: 0.75rem;
+}
+
+.divider::before,
+.divider::after {
+    width: 28%;
+}
+
+.sign-in-button {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sign-in-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--primary-color);
+}
+
+.login-link {
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    opacity: 0.7;
+    text-align: center;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.login-link a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 850px) {
+    .main-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .quote-section {
+        display: none;
+    }
+    .form-section {
+        border-right: none;
+        padding: 1.5rem 1rem;
+        background: transparent;
+    }
+    .form-container {
+        max-width: 100%;
+        width: 100%;
+    }
+}
