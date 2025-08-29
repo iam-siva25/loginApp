@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const retypePasswordInput = document.getElementById('retypePassword');
     const termsCheckbox = document.getElementById('terms');
     
-    const rightMessageHeading = document.getElementById('right-message-heading');
-    const rightMessageText = document.getElementById('right-message-text');
-
     document.querySelectorAll('.password-toggle').forEach(icon => {
         icon.addEventListener('click', () => {
             const targetId = icon.getAttribute('data-target');
@@ -69,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
-            const registeredName = nameInput.value.trim();
-            rightMessageHeading.textContent = `Welcome, ${registeredName}!`;
-            rightMessageText.textContent = `You've successfully created your account.`;
+            localStorage.setItem('userName', nameInput.value.trim());
+            localStorage.setItem('userEmail', emailInput.value.trim());
+            localStorage.setItem('userPassword', passwordInput.value.trim());
+
+            alert('Sign-up successful! Redirecting to login page...');
             
-            console.log('Form submitted successfully!');
-            // Redirect to the login page
             window.location.href = 'login.html';
         }
     });

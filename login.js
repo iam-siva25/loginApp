@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('loginName');
     const passwordInput = document.getElementById('loginPassword');
 
+    const rightMessageHeading = document.getElementById('right-message-heading');
+    const rightMessageText = document.getElementById('right-message-text');
+
     document.querySelectorAll('.password-toggle').forEach(icon => {
         icon.addEventListener('click', () => {
             const targetId = icon.getAttribute('data-target');
@@ -23,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         
         clearErrors();
-
         let isValid = true;
         
+        // Check for empty fields first
         if (nameInput.value.trim() === '') {
             showError(nameInput, 'Name is required.');
             isValid = false;
@@ -36,9 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
             isValid = false;
         }
 
+        // Retrieve the stored name and password from localStorage
+        const storedName = localStorage.getItem('userName');
+        const storedPassword = localStorage.getItem('userPassword');
+        
+        // Check if the entered name and password match the stored values.
+        // We use .trim() on both sides to handle leading/trailing spaces.
+        if (nameInput.value.trim() !== storedName) {
+            showError(nameInput, 'Incorrect name. Please try again.');
+            isValid = false;
+        }
+
+        if (passwordInput.value !== storedPassword) {
+            showError(passwordInput, 'Incorrect password. Please try again.');
+            isValid = false;
+        }
+        
         if (isValid) {
+            rightMessageHeading.textContent = `Welcome, ${nameInput.value.trim()}!`;
+            rightMessageText.textContent = `You have successfully logged in.`;
             alert('Login successful! You are now signed in.');
-            // This is where you would typically redirect to a dashboard
             // window.location.href = 'dashboard.html';
         }
     });
