@@ -6,29 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const retypePasswordInput = document.getElementById('retypePassword');
     const termsCheckbox = document.getElementById('terms');
     
-
     const rightMessageHeading = document.getElementById('right-message-heading');
-    const rightMessageText = document = document.getElementById('right-message-text');
+    const rightMessageText = document.getElementById('right-message-text');
 
-  
     document.querySelectorAll('.password-toggle').forEach(icon => {
         icon.addEventListener('click', () => {
             const targetId = icon.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
             
-            
             const type = targetInput.getAttribute('type') === 'password' ? 'text' : 'password';
             targetInput.setAttribute('type', type);
             
-           
             if (type === 'password') {
-              
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
+            } else {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
             }
         });
     });
@@ -80,6 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
             rightMessageText.textContent = `You've successfully created your account.`;
             
             console.log('Form submitted successfully!');
+            // Redirect to the login page
+            window.location.href = 'login.html';
         }
     });
 

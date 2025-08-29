@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Your requested color palette */
 :root {
     --primary-color: #a07d5d;
     --hover-color: #bfa58a;
@@ -20,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* KEY CHANGE: Removed min-height: 100vh to allow the body to shrink to the content's size */
+    min-height: 100vh;
     margin: 0;
     color: var(--text-dark);
 }
@@ -32,15 +31,11 @@ body {
     box-shadow: var(--shadow);
     width: 700px;
     max-width: 90%;
-    /* KEY CHANGE: Added max-height to prevent the container from growing beyond a certain point */
-    max-height: 90vh; 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     background: var(--card-bg);
     border: 1px solid var(--border);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    /* KEY CHANGE: Added margin to center the container vertically if needed */
-    margin: 20px;
 }
 
 .main-container:hover {
