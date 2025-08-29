@@ -6,19 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const retypePasswordInput = document.getElementById('retypePassword');
     const termsCheckbox = document.getElementById('terms');
     
-    // New DOM elements for the right-side message
-    const rightMessageHeading = document.getElementById('right-message-heading');
-    const rightMessageText = document.getElementById('right-message-text');
 
-    // Password toggle
+    const rightMessageHeading = document.getElementById('right-message-heading');
+    const rightMessageText = document = document.getElementById('right-message-text');
+
+  
     document.querySelectorAll('.password-toggle').forEach(icon => {
         icon.addEventListener('click', () => {
             const targetId = icon.getAttribute('data-target');
             const targetInput = document.getElementById(targetId);
+            
+            
             const type = targetInput.getAttribute('type') === 'password' ? 'text' : 'password';
             targetInput.setAttribute('type', type);
-            icon.classList.toggle('fa-eye');
-            icon.classList.toggle('fa-eye-slash');
+            
+           
+            if (type === 'password') {
+              
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
         });
     });
 
@@ -64,15 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
-            // Update the welcome message on the right side
             const registeredName = nameInput.value.trim();
             rightMessageHeading.textContent = `Welcome, ${registeredName}!`;
             rightMessageText.textContent = `You've successfully created your account.`;
             
             console.log('Form submitted successfully!');
-            
-            // Optionally hide the form after success
-            // form.style.display = 'none';
         }
     });
 
